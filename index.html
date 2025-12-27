@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Horma Clothing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+html, body{
+  margin:0;
+  height:100%;
+  font-family:'Cairo',sans-serif;
+  background:url("background.jpg") center/cover fixed no-repeat;
+}
+
+body{
+  background-color:rgba(0,0,0,0.2);
+  background-blend-mode:overlay;
+}
+
+/* Header */
+header{
+  background:rgba(0,0,0,0.85);
+  color:#fff;
+  text-align:center;
+  padding:25px;
+}
+
+.hero{
+  height:70vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hero h2{
+  background:rgba(255,255,255,0.85);
+  padding:20px 40px;
+  border-radius:15px;
+  font-size:32px;
+}
+
+/* Section */
+section{
+  background:rgba(255,255,255,0.95);
+  margin:40px;
+  padding:40px;
+  border-radius:20px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+.product{
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.product img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+}
+
+.product-content{
+  padding:15px;
+  text-align:center;
+}
+
+.price{
+  color:#d4af37;
+  font-weight:bold;
+}
+
+.btn{
+  margin-top:10px;
+  padding:10px 25px;
+  background:#000;
+  color:#fff;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+.btn:hover{
+  background:#d4af37;
+  color:#000;
+}
+
+/* Popup */
+#popup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
+}
+
+.popup-box{
+  background:#fff;
+  width:90%;
+  max-width:400px;
+  padding:25px;
+  border-radius:15px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:24px;
+  cursor:pointer;
+}
+
+.popup-box input, .popup-box select{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Horma Clothing</h1>
+  <p>أناقة محتشمة</p>
+</header>
+
+<div class="hero">
+  <h2>اكتشفي عالم العبايات الراقية</h2>
+</div>
+
+<section>
+<h2 style="text-align:center;">منتجاتنا</h2>
+
+<div class="products">
+
+<div class="product">
+  <img src="background.jpg">
+  <div class="product-content">
+    <h3>عباية سوداء</h3>
+    <div class="price">2500 دج</div>
+    <button class="btn orderBtn" data-name="عباية سوداء">اطلبي الآن</button>
+  </div>
+</div>
+
+<div class="product">
+  <img src="background.jpg">
+  <div class="product-content">
+    <h3>طقم صلاة نسائي</h3>
+    <div class="price">2500 دج</div>
+    <button class="btn orderBtn" data-name="طقم صلاة نسائي">اطلبي الآن</button>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- Popup -->
+<div id="popup">
+  <div class="popup-box">
+    <span class="close">&times;</span>
+    <h3 id="productName"></h3>
+
+    <input type="text" placeholder="الولاية">
+    <input type="text" placeholder="البلدية">
+    <input type="tel" placeholder="رقم الهاتف">
+
+    <!-- طريقة التوصيل -->
+    <select id="deliveryMethod">
+      <option value="">اختر طريقة التوصيل</option>
+      <option value="مكتب" data-price="400">استلام من المكتب - 400 دج</option>
+      <option value="منزل" data-price="800">توصيل إلى المنزل - 800 دج</option>
+    </select>
+
+    <!-- عرض السعر النهائي -->
+    <div id="totalPrice" style="margin-top:15px; font-weight:bold; text-align:center;"></div>
+
+    <button class="btn" style="width:100%;margin-top:15px;">إرسال الطلب</button>
+  </div>
+</div>
+
+<script>
+const popup = document.getElementById("popup");
+const productName = document.getElementById("productName");
+const totalPrice = document.getElementById("totalPrice");
+const deliveryMethod = document.getElementById("deliveryMethod");
+
+document.querySelectorAll(".orderBtn").forEach(btn => {
+  btn.onclick = () => {
+    productName.textContent = btn.dataset.name;
+    popup.style.display = "flex";
+
+    // السعر الأساسي لكل منتج
+    let basePrice = 2500;
+    totalPrice.textContent = "السعر النهائي: " + basePrice + " دج";
+
+    // تحديث السعر عند اختيار طريقة التوصيل
+    deliveryMethod.onchange = () => {
+      let deliveryPrice = parseInt(deliveryMethod.selectedOptions[0].dataset.price || 0);
+      totalPrice.textContent = "السعر النهائي: " + (basePrice + deliveryPrice) + " دج";
+    };
+  };
+});
+
+document.querySelector(".close").onclick = () => {
+  popup.style.display = "none";
+};
+</script>
+
+</body>
+</html>
