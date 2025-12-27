@@ -12,7 +12,7 @@ html, body{
   margin:0;
   height:100%;
   font-family:'Cairo',sans-serif;
-  background:url("IMG_8131.jpeg") center/cover fixed no-repeat;
+  background:url("background.jpg") center/cover fixed no-repeat;
 }
 
 body{
@@ -126,6 +126,12 @@ section{
   padding:10px;
   margin-top:10px;
 }
+#confirmationMessage{
+  text-align:center;
+  margin-top:15px;
+  color:green;
+  font-weight:bold;
+}
 </style>
 </head>
 
@@ -145,8 +151,9 @@ section{
 
 <div class="products">
 
+<!-- مكان لوضع صور الموديلات -->
 <div class="product">
-  <img src="background.jpg">
+  <img src="mod1.jpg" alt="موديل 1"> <!-- ضع هنا صورة الموديل 1 -->
   <div class="product-content">
     <h3>عباية سوداء</h3>
     <div class="price">2500 دج</div>
@@ -155,7 +162,7 @@ section{
 </div>
 
 <div class="product">
-  <img src="background.jpg">
+  <img src="mod2.jpg" alt="موديل 2"> <!-- ضع هنا صورة الموديل 2 -->
   <div class="product-content">
     <h3>طقم صلاة نسائي</h3>
     <div class="price">2500 دج</div>
@@ -163,6 +170,7 @@ section{
   </div>
 </div>
 
+<!-- يمكنك إضافة المزيد من الموديلات بنفس الشكل -->
 </div>
 </section>
 
@@ -176,17 +184,17 @@ section{
     <input type="text" placeholder="البلدية">
     <input type="tel" placeholder="رقم الهاتف">
 
-    <!-- طريقة التوصيل -->
     <select id="deliveryMethod">
       <option value="">اختر طريقة التوصيل</option>
       <option value="مكتب" data-price="400">استلام من المكتب - 400 دج</option>
       <option value="منزل" data-price="800">توصيل إلى المنزل - 800 دج</option>
     </select>
 
-    <!-- عرض السعر النهائي -->
-    <div id="totalPrice" style="margin-top:15px; font-weight:bold; text-align:center;"></div>
+    <div id="totalPrice"></div>
 
-    <button class="btn" style="width:100%;margin-top:15px;">إرسال الطلب</button>
+    <button class="btn" style="width:100%;margin-top:15px;" id="sendOrder">إرسال الطلب</button>
+
+    <div id="confirmationMessage" style="display:none;">تم إرسال طلبك بنجاح! شكرًا لتسوقك معنا.</div>
   </div>
 </div>
 
@@ -195,17 +203,17 @@ const popup = document.getElementById("popup");
 const productName = document.getElementById("productName");
 const totalPrice = document.getElementById("totalPrice");
 const deliveryMethod = document.getElementById("deliveryMethod");
+const sendOrderBtn = document.getElementById("sendOrder");
+const confirmationMessage = document.getElementById("confirmationMessage");
 
 document.querySelectorAll(".orderBtn").forEach(btn => {
   btn.onclick = () => {
     productName.textContent = btn.dataset.name;
     popup.style.display = "flex";
 
-    // السعر الأساسي لكل منتج
     let basePrice = 2500;
     totalPrice.textContent = "السعر النهائي: " + basePrice + " دج";
 
-    // تحديث السعر عند اختيار طريقة التوصيل
     deliveryMethod.onchange = () => {
       let deliveryPrice = parseInt(deliveryMethod.selectedOptions[0].dataset.price || 0);
       totalPrice.textContent = "السعر النهائي: " + (basePrice + deliveryPrice) + " دج";
@@ -215,6 +223,39 @@ document.querySelectorAll(".orderBtn").forEach(btn => {
 
 document.querySelector(".close").onclick = () => {
   popup.style.display = "none";
+};
+
+sendOrderBtn.onclick = () => {
+  const product = productName.textContent;
+  const state = popup.querySelector('input[placeholder="الولاية"]').value;
+  const city = popup.querySelector('input[placeholder="البلدية"]').value;
+  const phone = popup.querySelector('input[placeholder="رقم الهاتف"]').value;
+  const delivery = deliveryMethod.value;
+  const total = totalPrice.textContent;
+
+  if(!state || !city || !phone || !delivery){
+    alert("المرجو تعبئة جميع الحقول!");
+    return;
+  }
+
+  const subject = encodeURIComponent("طلب جديد من Horma Clothing");
+  const body = encodeURIComponent(
+    `المنتج: ${product}\n` +
+    `الولاية: ${state}\n` +
+    `البلدية: ${city}\n` +
+    `رقم الهاتف: ${phone}\n` +
+    `طريقة التوصيل: ${delivery}\n` +
+    `${total}`
+  );
+
+  window.location.href = `mailto:momomomo3131m@gmail.com?subject=${subject}&body=${body}`;
+
+  popup.style.display = "none";
+  confirmationMessage.style.display = "block";
+
+  setTimeout(() => {
+    confirmationMessage.style.display = "none";
+  }, 5000);
 };
 </script>
 
