@@ -12,7 +12,7 @@ html, body{
   margin:0;
   height:100%;
   font-family:'Cairo',sans-serif;
-  background:url("IMG_8131.jpeg") center/cover fixed no-repeat;
+  background:url("background.jpg") center/cover fixed no-repeat;
 }
 
 body{
@@ -20,7 +20,6 @@ body{
   background-blend-mode:overlay;
 }
 
-/* Header */
 header{
   background:rgba(0,0,0,0.85);
   color:#fff;
@@ -42,7 +41,6 @@ header{
   font-size:32px;
 }
 
-/* Section */
 section{
   background:rgba(255,255,255,0.95);
   margin:40px;
@@ -94,46 +92,6 @@ section{
   color:#000;
 }
 
-/* Popup */
-#popup{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.7);
-  justify-content:center;
-  align-items:center;
-}
-
-.popup-box{
-  background:#fff;
-  width:90%;
-  max-width:400px;
-  padding:25px;
-  border-radius:15px;
-  position:relative;
-}
-
-.close{
-  position:absolute;
-  top:10px;
-  right:15px;
-  font-size:24px;
-  cursor:pointer;
-}
-
-.popup-box input, .popup-box select{
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-}
-
-#confirmationMessage{
-  text-align:center;
-  margin-top:15px;
-  color:green;
-  font-weight:bold;
-}
-
 /* Media Queries لتجاوب الموقع */
 @media (min-width: 1200px){
   .products{
@@ -181,9 +139,8 @@ section{
 
 <div class="products">
 
-<!-- مكان لوضع صور الموديلات -->
 <div class="product">
-  <img src="IMG_7612.jpeg" alt="موديل 1"> <!-- ضع هنا صورة الموديل 1 -->
+  <img src="mod1.jpg" alt="موديل 1">
   <div class="product-content">
     <h3>عباية سوداء</h3>
     <div class="price">2500 دج</div>
@@ -192,7 +149,7 @@ section{
 </div>
 
 <div class="product">
-  <img src="IMG_7611.jpeg" alt="موديل 2"> <!-- ضع هنا صورة الموديل 2 -->
+  <img src="mod2.jpg" alt="موديل 2">
   <div class="product-content">
     <h3>طقم صلاة نسائي</h3>
     <div class="price">2500 دج</div>
@@ -200,93 +157,18 @@ section{
   </div>
 </div>
 
-<!-- يمكن إضافة المزيد من الموديلات بنفس الشكل -->
 </div>
 </section>
 
-<!-- Popup -->
-<div id="popup">
-  <div class="popup-box">
-    <span class="close">&times;</span>
-    <h3 id="productName"></h3>
-
-    <input type="text" placeholder="الولاية">
-    <input type="text" placeholder="البلدية">
-    <input type="tel" placeholder="رقم الهاتف">
-
-    <select id="deliveryMethod">
-      <option value="">اختر طريقة التوصيل</option>
-      <option value="مكتب" data-price="400">استلام من المكتب - 400 دج</option>
-      <option value="منزل" data-price="800">توصيل إلى المنزل - 800 دج</option>
-    </select>
-
-    <div id="totalPrice"></div>
-
-    <button class="btn" style="width:100%;margin-top:15px;" id="sendOrder">إرسال الطلب</button>
-
-    <div id="confirmationMessage" style="display:none;">تم إرسال طلبك بنجاح! شكرًا لتسوقك معنا.</div>
-  </div>
-</div>
-
 <script>
-const popup = document.getElementById("popup");
-const productName = document.getElementById("productName");
-const totalPrice = document.getElementById("totalPrice");
-const deliveryMethod = document.getElementById("deliveryMethod");
-const sendOrderBtn = document.getElementById("sendOrder");
-const confirmationMessage = document.getElementById("confirmationMessage");
+const formLink = "https://docs.google.com/forms/d/e/1FAIpQLSfy-MjssJKiXWzQOaf0Oy2XLjvnUiV8QTsQsFZONPKPdOOz0g/viewform?usp=dialog";
 
 document.querySelectorAll(".orderBtn").forEach(btn => {
   btn.onclick = () => {
-    productName.textContent = btn.dataset.name;
-    popup.style.display = "flex";
-
-    let basePrice = 2500;
-    totalPrice.textContent = "السعر النهائي: " + basePrice + " دج";
-
-    deliveryMethod.onchange = () => {
-      let deliveryPrice = parseInt(deliveryMethod.selectedOptions[0].dataset.price || 0);
-      totalPrice.textContent = "السعر النهائي: " + (basePrice + deliveryPrice) + " دج";
-    };
+    // افتح الفورم في تبويب جديد عند الضغط على الزر
+    window.open(formLink, "_blank");
   };
 });
-
-document.querySelector(".close").onclick = () => {
-  popup.style.display = "none";
-};
-
-sendOrderBtn.onclick = () => {
-  const product = productName.textContent;
-  const state = popup.querySelector('input[placeholder="الولاية"]').value;
-  const city = popup.querySelector('input[placeholder="البلدية"]').value;
-  const phone = popup.querySelector('input[placeholder="رقم الهاتف"]').value;
-  const delivery = deliveryMethod.value;
-  const total = totalPrice.textContent;
-
-  if(!state || !city || !phone || !delivery){
-    alert("المرجو تعبئة جميع الحقول!");
-    return;
-  }
-
-  const subject = encodeURIComponent("طلب جديد من Horma Clothing");
-  const body = encodeURIComponent(
-    `المنتج: ${product}\n` +
-    `الولاية: ${state}\n` +
-    `البلدية: ${city}\n` +
-    `رقم الهاتف: ${phone}\n` +
-    `طريقة التوصيل: ${delivery}\n` +
-    `${total}`
-  );
-
-  window.location.href = `mailto:momomomo3131m@gmail.com?subject=${subject}&body=${body}`;
-
-  popup.style.display = "none";
-  confirmationMessage.style.display = "block";
-
-  setTimeout(() => {
-    confirmationMessage.style.display = "none";
-  }, 5000);
-};
 </script>
 
 </body>
