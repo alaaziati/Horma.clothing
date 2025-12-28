@@ -8,6 +8,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+  <style>
+/* كل CSS الحالي هنا ... */
+
+/* تعديل لتجاوب الموقع مع مختلف الشاشات */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+/* شاشات كبيرة Desktop */
+@media (min-width: 1200px){
+  .products{
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* شاشات متوسطة Tablet */
+@media (min-width: 768px) and (max-width: 1199px){
+  .products{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* شاشات صغيرة Mobile */
+@media (max-width: 767px){
+  .products{
+    grid-template-columns: 1fr;
+  }
+
+  .hero h2{
+    font-size:24px;
+    padding:15px 25px;
+  }
+
+  section{
+    margin:20px;
+    padding:20px;
+  }
+}
+</style>
 html, body{
   margin:0;
   height:100%;
