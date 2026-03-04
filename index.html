@@ -15,145 +15,197 @@ gtag('config', 'G-HPY6JCPLXQ');
 crossorigin="anonymous"></script>
 
 <meta charset="UTF-8">
-<title>aladdin store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-adsense-account" content="ca-pub-5950290881262429">
+<title>aladdin store</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-html, body{
-  margin:0;
-  height:100%;
-  font-family:'Cairo',sans-serif;
-  background:url("IMG_8186.jpeg") center/cover fixed no-repeat;
-}
+/* ===== أساس ===== */
 
 body{
-  background-color:rgba(0,0,0,0.2);
-  background-blend-mode:overlay;
+margin:0;
+font-family:'Cairo',sans-serif;
+background:#0f0f0f;
+color:#fff;
 }
 
-header{
-  background:rgba(0,0,0,0.85);
-  color:#fff;
-  text-align:center;
-  padding:25px;
+/* ===== Navbar ===== */
+
+nav{
+position:sticky;
+top:0;
+background:rgba(0,0,0,0.9);
+backdrop-filter:blur(10px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+z-index:1000;
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
+
+.logo{
+font-size:22px;
+font-weight:700;
+color:#c9a227;
+}
+
+.nav-links a{
+color:#fff;
+margin:0 15px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:#c9a227;
+}
+
+/* ===== Hero ===== */
 
 .hero{
-  height:70vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+height:80vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+url("IMG_8186.jpeg") center/cover no-repeat;
 }
 
-.hero h2{
-  background:rgba(255,255,255,0.85);
-  padding:20px 40px;
-  border-radius:15px;
-  font-size:32px;
+.hero h1{
+font-size:48px;
+margin-bottom:10px;
 }
+
+.hero p{
+color:#ccc;
+margin-bottom:25px;
+}
+
+.hero button{
+padding:14px 35px;
+border:none;
+border-radius:30px;
+background:#c9a227;
+color:#000;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.hero button:hover{
+transform:scale(1.05);
+}
+
+/* ===== Section ===== */
 
 section{
-  background:rgba(255,255,255,0.95);
-  margin:40px;
-  padding:40px;
-  border-radius:20px;
+padding:60px 8%;
+background:#111;
 }
 
+.section-title{
+text-align:center;
+font-size:32px;
+margin-bottom:40px;
+}
+
+/* ===== Products ===== */
+
 .products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:25px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
 }
 
 .product{
-  background:#fff;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
-  transition:transform 0.3s ease;
+background:#181818;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+transition:0.35s;
 }
 
 .product:hover{
-  transform:translateY(-5px);
+transform:translateY(-10px);
+box-shadow:0 20px 50px rgba(0,0,0,0.7);
 }
 
-/* ===== صورة كبيرة وتظهر كاملة ===== */
+/* الصور لم تتغير */
 .product img{
-  width:100%;
-  height:600px;
-  object-fit:contain;
-  background:#fff;
-  transition:transform 0.4s ease;
+width:100%;
+height:600px;
+object-fit:contain;
+background:#fff;
+transition:transform .4s ease;
 }
 
-/* ===== Zoom احترافي ===== */
 .product:hover img{
-  transform:scale(1.08);
+transform:scale(1.07);
 }
 
 .product-content{
-  padding:15px;
-  text-align:center;
+padding:20px;
+text-align:center;
 }
 
 .price{
-  color:#d4af37;
-  font-weight:bold;
+color:#c9a227;
+font-weight:bold;
+margin:10px 0;
 }
 
 .btn{
-  margin-top:10px;
-  padding:10px 25px;
-  background:#000;
-  color:#fff;
-  border:none;
-  border-radius:25px;
-  cursor:pointer;
-  transition:0.3s;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:#c9a227;
+color:#000;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
 }
 
 .btn:hover{
-  background:#d4af37;
-  color:#000;
+transform:scale(1.05);
 }
 
-/* Responsive */
+/* ===== Features ===== */
 
-@media (min-width:1200px){
-  .products{
-    grid-template-columns:repeat(4,1fr);
-  }
+.features{
+display:flex;
+justify-content:space-around;
+text-align:center;
+padding:40px 0;
+background:#0f0f0f;
+flex-wrap:wrap;
 }
 
-@media (min-width:768px) and (max-width:1199px){
-  .products{
-    grid-template-columns:repeat(2,1fr);
-  }
+.feature{
+margin:15px;
+color:#ccc;
 }
 
-@media (max-width:767px){
+/* ===== Footer ===== */
 
-  .products{
-    grid-template-columns:1fr;
-  }
+footer{
+background:#000;
+padding:40px;
+text-align:center;
+color:#888;
+border-top:1px solid rgba(255,255,255,0.1);
+}
 
-  .hero h2{
-    font-size:24px;
-    padding:15px 25px;
-  }
+/* ===== Responsive ===== */
 
-  section{
-    margin:20px;
-    padding:20px;
-  }
-
-  .product img{
-    height:450px;
-  }
+@media(max-width:768px){
+.hero h1{font-size:32px;}
+.product img{height:450px;}
+nav{padding:15px;}
 }
 
 </style>
@@ -161,62 +213,83 @@ section{
 
 <body>
 
-<header>
-<h1>aladdin store</h1>
-<p>متجر علاء الدين</p>
-</header>
+<!-- ===== Navbar ===== -->
+
+<nav>
+<div class="logo">Aladdin Store</div>
+<div class="nav-links">
+<a href="#">الرئيسية</a>
+<a href="#">المنتجات</a>
+<a href="#">تواصل معنا</a>
+</div>
+</nav>
+
+<!-- ===== Hero ===== -->
 
 <div class="hero">
-<h2>اكتشفو متجرنا</h2>
+<h1>تجربة تسوق عصرية</h1>
+<p>أفضل المنتجات بأفضل الأسعار</p>
+<button onclick="document.querySelector('section').scrollIntoView({behavior:'smooth'})">
+تصفح المنتجات
+</button>
 </div>
 
+<!-- ===== Features ===== -->
+
+<div class="features">
+<div class="feature">🚚 توصيل لكل الولايات</div>
+<div class="feature">💰 الدفع عند الاستلام</div>
+<div class="feature">⭐ جودة مضمونة</div>
+</div>
+
+<!-- ===== Products ===== -->
+
 <section>
-<h2 style="text-align:center;">منتجاتنا</h2>
-
+<h2 class="section-title">منتجاتنا</h2>
 <div class="products" id="productsContainer"></div>
-
 </section>
+
+<!-- ===== Footer ===== -->
+
+<footer>
+© 2026 Aladdin Store — جميع الحقوق محفوظة
+</footer>
 
 <script>
 
-const formLink =
-"https://docs.google.com/forms/d/e/1FAIpQLSfy-MjssJKiXWzQOaf0Oy2XLjvnUiV8QTsQsFZONPKPdOOz0g/viewform?usp=dialog";
+const formLink="https://docs.google.com/forms/d/e/1FAIpQLSfy-MjssJKiXWzQOaf0Oy2XLjvnUiV8QTsQsFZONPKPdOOz0g/viewform?usp=dialog";
 
-/* ===== اضف منتجاتك هنا فقط ===== */
-
-const products = [
+const products=[
 
 {
 name:"Xiaomi Trottinette électrique Scooter 4 Lite (2nd Gen)",
-price:" ???دج",
+price:"2500 دج",
 image:"IMG_9737.jpeg"
 },
 
 {
-name:"Xiaomi Trottinette électrique Scooter 4 Lite (2nd Gen)",
-price:"??? دج",
+name:"منتج رقم 2",
+price:"2500 دج",
 image:"IMG_9737.jpeg"
 },
 
 {
-name:" Xiaomi Trottinette électrique Scooter 4 Lite (2nd Gen) ",
-price:"??? دج",
+name:"منتج رقم 3",
+price:"2500 دج",
 image:"IMG_9737.jpeg"
 }
 
 ];
 
-/* =============================== */
+const container=document.getElementById("productsContainer");
 
-const container = document.getElementById("productsContainer");
+products.forEach(product=>{
 
-products.forEach(product => {
-
-const div = document.createElement("div");
+const div=document.createElement("div");
 div.className="product";
 
 div.innerHTML=`
-<img src="${product.image}" alt="${product.name}">
+<img src="${product.image}">
 <div class="product-content">
 <h3>${product.name}</h3>
 <div class="price">${product.price}</div>
