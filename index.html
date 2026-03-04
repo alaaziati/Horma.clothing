@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <!-- Google tag (gtag.js) -->
+
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPY6JCPLXQ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-HPY6JCPLXQ');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-HPY6JCPLXQ');
 </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5950290881262429"
-     crossorigin="anonymous"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5950290881262429"
+crossorigin="anonymous"></script>
+
 <meta charset="UTF-8">
 <title>aladdin store</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="google-adsense-account" content="ca-pub-5950290881262429">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-adsense-account" content="ca-pub-5950290881262429">
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+
 html, body{
   margin:0;
   height:100%;
@@ -70,12 +74,25 @@ section{
   border-radius:15px;
   overflow:hidden;
   box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  transition:transform 0.3s ease;
 }
 
+.product:hover{
+  transform:translateY(-5px);
+}
+
+/* ===== صورة كبيرة وتظهر كاملة ===== */
 .product img{
   width:100%;
-  height:260px;
-  object-fit:cover;
+  height:600px;
+  object-fit:contain;
+  background:#fff;
+  transition:transform 0.4s ease;
+}
+
+/* ===== Zoom احترافي ===== */
+.product:hover img{
+  transform:scale(1.08);
 }
 
 .product-content{
@@ -96,6 +113,7 @@ section{
   border:none;
   border-radius:25px;
   cursor:pointer;
+  transition:0.3s;
 }
 
 .btn:hover{
@@ -103,22 +121,24 @@ section{
   color:#000;
 }
 
-/* Media Queries لتجاوب الموقع */
-@media (min-width: 1200px){
+/* Responsive */
+
+@media (min-width:1200px){
   .products{
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns:repeat(4,1fr);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1199px){
+@media (min-width:768px) and (max-width:1199px){
   .products{
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:repeat(2,1fr);
   }
 }
 
-@media (max-width: 767px){
+@media (max-width:767px){
+
   .products{
-    grid-template-columns: 1fr;
+    grid-template-columns:1fr;
   }
 
   .hero h2{
@@ -130,69 +150,88 @@ section{
     margin:20px;
     padding:20px;
   }
+
+  .product img{
+    height:450px;
+  }
 }
+
 </style>
 </head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5950290881262429"
-     crossorigin="anonymous"></script>
 
 <body>
 
 <header>
-  <h1>aladdin store</h1>
-  <p>متجر علاء الدين</p>
+<h1>aladdin store</h1>
+<p>متجر علاء الدين</p>
 </header>
 
 <div class="hero">
-  <h2>اكتشفو متجرنا</h2>
+<h2>اكتشفو متجرنا</h2>
 </div>
 
 <section>
 <h2 style="text-align:center;">منتجاتنا</h2>
 
-<div class="products">
+<div class="products" id="productsContainer"></div>
 
-<div class="product">
-  <img src="IMG_9737.jpeg" alt="Gel Douche Le Petit Marseillais Noix de Coco Bio كريم استحمام بجوز الهند العضوي">
-  <div class="product-content">
-    <h3>Xiaomi Trottinette électrique Scooter 4
-Lite (2nd Gen)</h3>
-    <div class="price">2500 دج</div>
-    <button class="btn orderBtn" data-name="Gel Douche Le Petit Marseillais Noix de Coco Bio كريم استحمام بجوز الهند العضوي">اطلب الآن</button>
-  </div>
-</div>
-
-<div class="product">
-  <img src="IMG_9737.jpeg" alt="منتج 2">
-  <div class="product-content">
-    <h3>Xiaomi Trottinette électrique Scooter 4
-Lite (2nd Gen) </h3>
-    <div class="price">2500 دج</div>
-    <button class="btn orderBtn" data-name="منتج رقم 2">اطلب الان</button>
-  </div>
-</div>
-<div class="product">
-  <img src="IMG_9737.jpeg" alt="منتج 3">
-  <div class="product-content">
-    <h3>Xiaomi Trottinette électrique Scooter 4
-Lite (2nd Gen)</h3>
-    <div class="price">2500 دج</div>
-    <button class="btn orderBtn" data-name="منتج رقم 3">اطلب الان</button>
-  </div>
-</div>
-
-</div>
 </section>
 
 <script>
-const formLink = "https://docs.google.com/forms/d/e/1FAIpQLSfy-MjssJKiXWzQOaf0Oy2XLjvnUiV8QTsQsFZONPKPdOOz0g/viewform?usp=dialog";
 
-document.querySelectorAll(".orderBtn").forEach(btn => {
-  btn.onclick = () => {
-    // افتح الفورم في تبويب جديد عند الضغط على الزر
-    window.open(formLink, "_blank");
-  };
+const formLink =
+"https://docs.google.com/forms/d/e/1FAIpQLSfy-MjssJKiXWzQOaf0Oy2XLjvnUiV8QTsQsFZONPKPdOOz0g/viewform?usp=dialog";
+
+/* ===== اضف منتجاتك هنا فقط ===== */
+
+const products = [
+
+{
+name:"Xiaomi Trottinette électrique Scooter 4 Lite (2nd Gen)",
+price:"2500 دج",
+image:"IMG_9737.jpeg"
+},
+
+{
+name:"منتج رقم 2",
+price:"2500 دج",
+image:"IMG_9737.jpeg"
+},
+
+{
+name:"منتج رقم 3",
+price:"2500 دج",
+image:"IMG_9737.jpeg"
+}
+
+];
+
+/* =============================== */
+
+const container = document.getElementById("productsContainer");
+
+products.forEach(product => {
+
+const div = document.createElement("div");
+div.className="product";
+
+div.innerHTML=`
+<img src="${product.image}" alt="${product.name}">
+<div class="product-content">
+<h3>${product.name}</h3>
+<div class="price">${product.price}</div>
+<button class="btn">اطلب الآن</button>
+</div>
+`;
+
+div.querySelector(".btn").onclick=()=>{
+window.open(formLink,"_blank");
+};
+
+container.appendChild(div);
+
 });
+
 </script>
 
 </body>
